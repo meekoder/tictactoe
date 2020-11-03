@@ -1,0 +1,21 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+table {
+  display: table;
+  width: 50%;
+  height: 50%;
+
+}
+
+table, td {
+  border: 1px solid black;
+}
