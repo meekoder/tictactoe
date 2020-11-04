@@ -1,0 +1,95 @@
+const board = document.getElementById('board');
+
+const winningPatterns = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9],
+  [1, 5, 9],
+  [3, 5, 7]
+];
+
+let playerXSpots = [];
+let playerOSpots = [];
+let counter = 1;
+let currPlayer = 'O';
+let winner = 'Player 1';
+
+function makeBoard() {
+  for (let i = 0; i < 3; i++) {
+    const row = document.createElement('tr');
+    for (let j = 0; j < 3; j++) {
+      const col = document.createElement('td');
+      col.idx = counter;
+      col.innerHTML = counter;
+
+      function handleClick(e) {
+        if (currPlayer === 'O') {
+          this.innerHTML = 'X';
+          currPlayer = 'X';
+          this.removeEventListener('click', arguments.callee);
+          playerXSpots.push(this.idx);
+        } else {
+          this.innerHTML = 'O';
+          currPlayer = 'O';
+          this.removeEventListener('click', arguments.callee);
+          playerOSpots.push(this.idx);
+          console.log(playerXSpots, playerOSpots)
+        } 
+        
+        if (checkWin()) {
+          if (currPlayer === 'O') {
+            winner = 'Player 2';
+          } 
+          console.log(winner + ' wins!');
+        }
+
+      }
+      col.addEventListener('click', handleClick);
+      row.appendChild(col);
+      counter++;
+    }
+    board.appendChild(row);
+  }
+}
+
+function checkWin() {
+  let win = false;
+  let currPlayerSpots = playerXSpots;
+
+  if (currPlayer === 'O') {
+    currPlayerSpots = playerOSpots;
+  }
+
+  if (currPlayerSpots.length === 3) {
+
+    for (let i = 0; i < winningPatterns.length; i++) {
+      const currPattern = winningPatterns[i];
+      let playerHasPattern = true;
+
+      for (let j = 0; j < currPattern.length; j++) {
+        let patternFound = false;
+        for (let k = 0; k < currPlayerSpots.length; k++) {
+          if (currPlayerSpots[k] === currPattern[j]) {
+            patternFound = true;
+            break;
+          }
+        }
+        if (!patternFound) {
+          playerHasPattern = false;
+          break;
+        }
+      }
+      if (playerHasPattern) {
+        win = true;
+        break;
+      }
+    }
+  }
+
+  return win;
+}
+
+makeBoard();
