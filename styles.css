@@ -11,6 +11,7 @@ body {
 }
 
 table {
+  text-align: center;
   display: table;
   width: 50%;
   height: 50%;

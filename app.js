@@ -17,7 +17,10 @@ let counter = 1;
 let currPlayer = 'O';
 let winner = 'Player 1';
 
-function makeBoard() {
+const makeBoard = () => {
+  while (board.hasChildNodes()) {
+    board.removeChild(board.firstChild);
+  }
   for (let i = 0; i < 3; i++) {
     const row = document.createElement('tr');
     for (let j = 0; j < 3; j++) {
@@ -55,7 +58,7 @@ function makeBoard() {
   }
 }
 
-function checkWin() {
+const checkWin = () => {
   let win = false;
   let currPlayerSpots = playerXSpots;
 
@@ -90,6 +93,15 @@ function checkWin() {
   }
 
   return win;
+}
+
+const resetBoard = () => {
+  console.log('reset clicked')
+  currPlayer = 'O';
+  counter = 1;
+  playerXSpots = [];
+  playerOSpots = [];
+  makeBoard();
 }
 
 makeBoard();
