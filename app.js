@@ -30,22 +30,17 @@ const makeBoard = () => {
 
       function handleClick(e) {
         if (currPlayer === 'O') {
-          this.innerHTML = 'X';
-          currPlayer = 'X';
-          this.removeEventListener('click', arguments.callee);
           playerXSpots.push(this.idx);
         } else {
-          this.innerHTML = 'O';
-          currPlayer = 'O';
-          this.removeEventListener('click', arguments.callee);
           playerOSpots.push(this.idx);
           console.log(playerXSpots, playerOSpots)
         } 
+        this.innerHTML = currPlayer === 'O' ? 'X' : 'O';
+        currPlayer = currPlayer === 'O' ? 'X' : 'O';
+        this.removeEventListener('click', arguments.callee);
         
         if (checkWin()) {
-          if (currPlayer === 'O') {
-            winner = 'Player 2';
-          } 
+          winner = currPlayer === 'O' ? 'Player 2' : 'Player 1';
           alert(`${winner} wins!!`);
           console.log(winner + ' wins!');
         }
