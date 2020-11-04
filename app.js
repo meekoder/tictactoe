@@ -26,7 +26,6 @@ const makeBoard = () => {
     for (let j = 0; j < 3; j++) {
       const col = document.createElement('td');
       col.idx = counter;
-      col.innerHTML = counter;
 
       function handleClick(e) {
         if (currPlayer === 'O') {
@@ -92,7 +91,6 @@ const checkWin = () => {
 }
 
 const resetBoard = () => {
-  console.log('reset clicked')
   currPlayer = 'O';
   counter = 1;
   playerXSpots = [];
