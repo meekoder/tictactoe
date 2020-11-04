@@ -46,6 +46,7 @@ const makeBoard = () => {
           if (currPlayer === 'O') {
             winner = 'Player 2';
           } 
+          alert(`${winner} wins!!`);
           console.log(winner + ' wins!');
         }
 
