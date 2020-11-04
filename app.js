@@ -13,7 +13,7 @@ const winningPatterns = [
 
 let playerXSpots = [];
 let playerOSpots = [];
-let counter = 1;
+let index = 1;
 let currPlayer = 'O';
 let winner = 'Player 1';
 
@@ -25,14 +25,13 @@ const makeBoard = () => {
     const row = document.createElement('tr');
     for (let j = 0; j < 3; j++) {
       const col = document.createElement('td');
-      col.idx = counter;
+      col.idx = index;
 
       function handleClick(e) {
         if (currPlayer === 'O') {
           playerXSpots.push(this.idx);
         } else {
           playerOSpots.push(this.idx);
-          console.log(playerXSpots, playerOSpots)
         } 
         this.innerHTML = currPlayer === 'O' ? 'X' : 'O';
         currPlayer = currPlayer === 'O' ? 'X' : 'O';
@@ -49,26 +48,22 @@ const makeBoard = () => {
       }
       col.addEventListener('click', handleClick);
       row.appendChild(col);
-      counter++;
+      index++;
     }
     board.appendChild(row);
   }
-}
+};
 
 const checkWin = () => {
   let win = false;
   let currPlayerSpots = playerXSpots;
-
   if (currPlayer === 'O') {
     currPlayerSpots = playerOSpots;
   }
-
   if (currPlayerSpots.length === 3) {
-
     for (let i = 0; i < winningPatterns.length; i++) {
       const currPattern = winningPatterns[i];
       let playerHasPattern = true;
-
       for (let j = 0; j < currPattern.length; j++) {
         let patternFound = false;
         for (let k = 0; k < currPlayerSpots.length; k++) {
@@ -88,7 +83,6 @@ const checkWin = () => {
       }
     }
   }
-
   return win;
 }
 
