@@ -16,6 +16,7 @@ table {
   margin: 0; padding: 0;
   border-collapse: collapse;
   text-align: center;
+  font-size: 50px;
 }
 
 td { 

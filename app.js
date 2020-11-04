@@ -42,6 +42,8 @@ const makeBoard = () => {
           winner = currPlayer === 'O' ? 'Player 2' : 'Player 1';
           alert(`${winner} wins!!`);
           console.log(winner + ' wins!');
+        } else if (playerXSpots.length + playerOSpots.length === 9) {
+          alert("It's a tie!");
         }
 
       }
